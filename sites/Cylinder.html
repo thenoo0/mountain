@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" lang="pl">
+<head>
+	<meta charset="utf-8">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<link rel="stylesheet" type="text/css" href="../styles/s1.css">
+
+	
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<title>Walec</title>
+</head>
+
+	<body>
+		<nav class="navbar navbar-default navbar-fixed-top">
+			<div class="container-fluid">
+			<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a class="navbar-brand" href="Gory.html"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Strona główna</a></li>
+						<li><a href="Karpaty.html">Karpaty</a></li>
+						<li><a href="Sudety.html">Sudety</a></li>
+						<li><a href="#">Góry Świętokrzyskie</a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+		
+		<section id="portfolio">	
+			<div class="container"> 
+				<div class="row">
+				<h1 class="center">Oblicz wymiary walca</h1>
+					<div class="col-md-6">
+						Promien walca
+						<input type="range" id="promien_in" value="0" min="0" max="10" step="0.2"/>
+						<span id="promien_wart">0</span>
+					</div>
+					<div class="col-md-6">
+						Wysokosc walca
+						<input type="range" id="wysokosc_in" value="0" min="0" max="10" step="0.2"/>
+						<span id="wysokosc_wart">0</span>
+					</div>
+					
+					<div class="col-xs-12">
+						Objetosc walca: 	
+						<span id="objetosc">0</span>
+					</div>
+					<div class="col-xs-12">
+						Powierzchnia walca:
+						<span id="powierzchnia">0</span>
+					</div>
+					<div class="col-xs-12">
+						
+					</div>
+					
+				</div>
+			</div>
+		</section>
+		<img class="img-rounded " src="../img/cylinder.gif" alt="tatry">
+		<footer class="text-center">
+			<div class="footer-below">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							Projekt na zaliczenie przedmiotu "Zaawansowane Technologie webowe 1"<br>stworzony przez - Mateusz Lach
+							<a href = "Cylinder.html" Cylinder>Extra</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
+
+
+<script>
+
+	var wysokosc = 0;
+	var promien = 0;
+
+	function obl_objetosc(r, h) {
+		return (Math.PI * r * r * h);
+	}
+	function obl_powierzchnia(r, h) {
+		return (2 * obl_ppodstawy(r,h) + obl_pboczne(r,h));
+	}
+  
+	function obl_pboczne(r,h){
+		return (2 * Math.PI * r * h);
+	}
+	
+	function obl_ppodstawy(r,h){
+		return (Math.PI * r * r);
+	}
+
+
+  $('#promien_in').click(function(event) {
+		$('#promien_wart').html( $(this).val());
+		promien = event.target.value;
+		$("#objetosc").html(obl_objetosc(promien, wysokosc));
+		$("#powierzchnia").html(obl_powierzchnia(promien, wysokosc));
+	});
+  
+  
+
+
+  $("#wysokosc_in").click(function(event) {
+		$("#wysokosc_wart").html( $(this).val());
+		wysokosc = event.target.value;
+		$("#objetosc").html(obl_objetosc(promien, wysokosc));
+		$("#powierzchnia").html(obl_powierzchnia(promien, wysokosc));
+  });
+
+	
+</script>
